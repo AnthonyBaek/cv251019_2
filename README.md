@@ -33,6 +33,68 @@ cv-web-app/
 └── README.md           # 프로젝트 문서
 ```
 
+## 🔄 웹앱 동작 방식
+
+다음은 CV Web App의 주요 사용자 인터랙션과 시스템 동작을 보여주는 시퀀스 다이어그램입니다:
+
+```mermaid
+sequenceDiagram
+    participant User as 사용자
+    participant Browser as 브라우저
+    participant HTML as index.html
+    participant CSS as style.css
+    participant JS as script.js
+    participant Data as CV 데이터
+
+    Note over User, Data: 1. 초기 페이지 로드
+    User->>Browser: 웹사이트 접속
+    Browser->>HTML: index.html 요청
+    HTML->>CSS: style.css 로드
+    HTML->>JS: script.js 로드
+    HTML->>Browser: DOM 렌더링
+    JS->>Data: CV 데이터 초기화
+    JS->>Browser: 페이지 초기화 완료
+    Browser->>User: CV 웹사이트 표시
+
+    Note over User, Data: 2. 네비게이션 상호작용
+    User->>Browser: 메뉴 클릭 (소개/경력/프로젝트/스킬/연락처)
+    Browser->>JS: 클릭 이벤트 발생
+    JS->>Browser: 부드러운 스크롤 실행
+    Browser->>User: 해당 섹션으로 이동
+
+    Note over User, Data: 3. 언어 전환
+    User->>Browser: 언어 전환 버튼 클릭 (🇺🇸/🇰🇷)
+    Browser->>JS: 언어 전환 이벤트
+    JS->>JS: currentLanguage 토글 (ko ↔ en)
+    JS->>Browser: 모든 다국어 요소 업데이트
+    Browser->>User: 언어 변경된 UI 표시
+
+    Note over User, Data: 4. 호버 효과
+    User->>Browser: 요소에 마우스 호버
+    Browser->>CSS: CSS 호버 효과 적용
+    CSS->>Browser: 애니메이션 실행
+    Browser->>User: 시각적 피드백 제공
+
+    Note over User, Data: 5. 스크롤 애니메이션
+    User->>Browser: 페이지 스크롤
+    Browser->>JS: 스크롤 이벤트 발생
+    JS->>JS: Intersection Observer 실행
+    JS->>Browser: 스크롤 애니메이션 요소 활성화
+    Browser->>User: 부드러운 애니메이션 표시
+
+    Note over User, Data: 6. 키보드 접근성
+    User->>Browser: Tab 키 입력
+    Browser->>JS: 키보드 이벤트 처리
+    JS->>Browser: 포커스 이동 및 스타일 적용
+    Browser->>User: 키보드 네비게이션 지원
+
+    Note over User, Data: 7. 반응형 디자인
+    User->>Browser: 화면 크기 변경
+    Browser->>CSS: 미디어 쿼리 적용
+    CSS->>Browser: 반응형 레이아웃 조정
+    Browser->>User: 최적화된 레이아웃 표시
+```
+
 ## 🚀 시작하기
 
 ### 설치 및 실행
